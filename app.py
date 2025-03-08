@@ -1,4 +1,3 @@
-import azure.functions as func
 from flask import Flask, render_template, request, url_for, redirect
 from datetime import datetime
 
@@ -44,8 +43,11 @@ def contact():
     return render_template('contact.html', title='Neural Connections')
 
 @app.route('/thank-you')
-
-def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
-    return func.WsgiMiddleware(app.wsgi_app).handle(req, context)
 def thank_you():
     return render_template('thank_you.html', title='Message Received')
+
+# Required for AWS Lambda
+from serverless_wsgi import handle_request
+
+def lambda_handler(event, context):
+    return handle_request(app, event, context)
