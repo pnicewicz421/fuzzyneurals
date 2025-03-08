@@ -1,0 +1,10 @@
+/fuzzyneurals
+    app.py                # Main application file
+    models.py             # For any ML models you want to showcase
+    /static
+        /css             # CSS stylesheets
+        /js              # JavaScript files
+        /images          # Image assets
+    /templates           # HTML templates
+    /data                # For any datasets or model weights
+    README.md            # Project documentation

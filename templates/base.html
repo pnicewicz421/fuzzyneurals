@@ -1,0 +1,40 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <canvas id="neural-canvas"></canvas>
+    
+    <nav class="neural-nav">
+        <div class="logo">FuzzyNeurals</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('blog') }}">Thought Lab</a></li>
+            <li><a href="{{ url_for('contact') }}">Connect</a></li>
+        </ul>
+    </nav>
+    
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/nicewicz" target="_blank">LinkedIn</a>
+            <a href="https://github.com/pnicewicz421" target="_blank">GitHub</a>
+        </div>
+        <p>&copy; {% now year %} P. Nicewicz - Data Scientist, Thinker + Tinkerer</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/neural-network.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
