@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "fuzzyneurals"
 version = "0.1.0"
-description = "P Nicewicz Enterprises wakes up in 2025 to combine available programming, computer science, biology, neurology, physics, math knowledge and a deep understanding of language, cultture, humanity to tackle projects to improve the daily lives of people living with neurological conditions."
-authors = ["P Nicewicz"]
+description = "P Nice Enterprises wakes up in 2025 to combine available programming, computer science, biology, neurology, physics, math knowledge and a deep understanding of language, cultture, humanity to tackle projects to improve the daily lives of people living with neurological conditions."
+authors = ["P Nice"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-flask = "^3.1.0"
 
 
 [build-system]
