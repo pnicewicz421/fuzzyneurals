@@ -1,5 +1,12 @@
 from flask import Flask, render_template, request, url_for, redirect
+from datetime import datetime
+
 app = Flask(__name__)
+
+# Create a context processor to make current_year available to all templates
+@app.context_processor
+def inject_year():
+    return {'current_year': datetime.now().year}
 
 @app.route('/')
 def home():
