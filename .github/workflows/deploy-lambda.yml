@@ -30,7 +30,7 @@ jobs:
     - name: Package application
       run: |
         cp app.py ./package/
-        cd package && zip -r ../lambda_function.zip . && cd ..
+        cd package && zip -r ../fuzzyneurals.zip . && cd ..
 
     # Step 5: Configure AWS credentials
     - name: Configure AWS credentials
