@@ -50,4 +50,6 @@ def thank_you():
 from serverless_wsgi import handle_request
 
 def lambda_handler(event, context):
+    if 'headers' not in event:
+        event['headers'] = {}
     return handle_request(app, event, context)
