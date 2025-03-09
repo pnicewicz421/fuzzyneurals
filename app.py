@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, redirect
 from datetime import datetime
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
         # Send email or store message
-        return redirect(url_for('thank_you'))
+        return redirect('/thank-you')  # Directly specify the URL path
     return render_template('contact.html', title='Neural Connections')
 
 @app.route('/thank-you')
