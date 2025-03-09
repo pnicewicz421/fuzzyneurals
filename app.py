@@ -1,5 +1,12 @@
 from flask import Flask, render_template, request, url_for, redirect
+from datetime import datetime
+
 app = Flask(__name__)
+
+# Create a context processor to make current_year available to all templates
+@app.context_processor
+def inject_year():
+    return {'current_year': datetime.now().year}
 
 @app.route('/')
 def home():
@@ -38,3 +45,9 @@ def contact():
 @app.route('/thank-you')
 def thank_you():
     return render_template('thank_you.html', title='Message Received')
+
+# Required for AWS Lambda
+from serverless_wsgi import handle_request
+
+def lambda_handler(event, context):
+    return handle_request(app, event, context)
