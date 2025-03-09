@@ -50,6 +50,8 @@ def thank_you():
 from serverless_wsgi import handle_request
 
 def lambda_handler(event, context):
-    if 'headers' not in event:
-        event['headers'] = {}
+    # Ensure required keys are present in the event object
+    event.setdefault("headers", {})
+    event.setdefault("path", "/")
+    event.setdefault("httpMethod", "GET")
     return handle_request(app, event, context)
