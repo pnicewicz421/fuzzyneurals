@@ -27,10 +27,14 @@ jobs:
         pip install -r requirements.txt --target ./package
 
     # Step 4: Package application for Lambda
-    - name: Package application
+    - name: Package application for Lambda
       run: |
         cp app.py ./package/
         cd package && zip -r ../fuzzyneurals.zip . && cd ..
+
+    # Debugging step (optional): List files in workspace
+    - name: List files in workspace
+      run: ls -lh
 
     # Step 5: Configure AWS credentials
     - name: Configure AWS credentials
@@ -46,4 +50,3 @@ jobs:
         aws lambda update-function-code \
           --function-name fuzzyneurals \
           --zip-file fileb://fuzzyneurals.zip
-
