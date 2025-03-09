@@ -26,17 +26,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --target ./package
 
-    # Step 4: Package application for Lambda
+    # Step 4: Copy application files (including templates and static)
+    - name: Copy application files
+      run: |
+        cp -r templates ./package/templates
+        cp -r static ./package/static
+        cp app.py ./package/
+
+    # Step 5: Package application for Lambda
     - name: Package application for Lambda
       run: |
-        cp app.py ./package/
         cd package && zip -r ../fuzzyneurals.zip . && cd ..
 
     # Debugging step (optional): List files in workspace
     - name: List files in workspace
       run: ls -lh
 
-    # Step 5: Configure AWS credentials
+    # Step 6: Configure AWS credentials
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -44,7 +50,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    # Step 6: Deploy to AWS Lambda
+    # Step 7: Deploy to AWS Lambda
     - name: Deploy to AWS Lambda
       run: |
         aws lambda update-function-code \
